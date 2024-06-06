@@ -48,6 +48,30 @@ const userData = [
   },
 ] satisfies Prisma.UserCreateInput[]
 
+const propertyListingsData = [
+  {
+    addressLine1: '123 Fake Lane',
+    addressLine2: 'Missoula, MS 76000',
+    monthlyRent: 2750,
+    available: false,
+    overview: 'This is test property number 1.',
+  },
+  {
+    addressLine1: '5555 Broomfield',
+    addressLine2: 'Arkansas City, MS 76000',
+    monthlyRent: 1750,
+    available: true,
+    overview: 'This is test property number 2.',
+  },
+  {
+    addressLine1: '612 Trousdale',
+    addressLine2: 'Beaver City, MI 48558',
+    monthlyRent: 9750,
+    available: true,
+    overview: 'This is test property number 3.',
+  },
+]
+
 async function main() {
   console.log(`Start seeding ...`)
   for (const u of userData) {
@@ -56,6 +80,16 @@ async function main() {
     })
     console.log(`Created user with id: ${user.id}`)
   }
+
+  // Seed some fake properites
+  for (const p of propertyListingsData) {
+    const property = await prisma.property.create({
+      data: p,
+    })
+    console.log(`Created user with id: ${property.id}`)
+  }
+
+
   console.log(`Seeding finished.`)
 }
 

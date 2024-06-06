@@ -29,3 +29,18 @@ model Post {
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
+
+model Property {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  addressLine1   String
+  addressLine2   String
+  monthlyRent    Int
+  available      Boolean  @default(true)
+  images         String?
+  overview       String
+  detailsOne     String?
+  detailsTwo     String?
+  detailsThree   String?
+}
