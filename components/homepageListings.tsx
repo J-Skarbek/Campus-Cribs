@@ -1,36 +1,22 @@
-// 'use client';
-
-// import { PrismaClient } from 'postgresql-supabase/node_modules/prisma/client';
 import { PrismaClient } from "@prisma/client";
-// import { useState, useEffect } from "react";
 
-// async function main() {
-//   const allProperties = await prisma.property.findMany()
-//   console.log(allProperties);
-// }
-
-export default function HomePageListings() {
+export default async function HomePageListings() {
   const prisma = new PrismaClient();
+  const properties = await prisma.property.findMany();
 
-  async function main() {
-    const allProperties = await prisma.property.findMany()
-    console.log(allProperties);
-  }
-
-  main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
-
-  console.log(main())
+  const displayPropertyListings = properties.map(property => {
+    return <li key={property.id}>{property.addressLine1} | {property.addressLine2} </li>
+  });
 
   return (
-    <div>Listings would go here</div>
+    <>
+     <h2>Here are the listings</h2>
+      <div className="listings-container">
+        <ul>
+          {displayPropertyListings}
+        </ul>
+      </div>
+    </>
   )
 }
 
