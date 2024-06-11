@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function MastheadSlider() {
   const [sliderData, setSliderData] = useState([
@@ -26,6 +26,26 @@ export default function MastheadSlider() {
     },
   ]);
 
+  const [displaySlide, setDisplaySlide] = useState(sliderData[0]);
+  // Just a rough test -- will move this to it's own component and re-do to
+  // be more performant
+
+  useEffect(() => {
+    const slideInterval = setInterval(displayContent, 2500);
+
+    function displayContent() {
+      if (displaySlide === sliderData[0]) {
+        setDisplaySlide(sliderData[1]);
+      };
+      if (displaySlide === sliderData[1]) {
+        setDisplaySlide(sliderData[2]);
+      };
+      if (displaySlide === sliderData[2]) {
+        setDisplaySlide(sliderData[0]);
+      };
+    }
+  })
+
   const displaySliderData = sliderData.map(data => {
     return (
       <h2 key={data.id}>{data.imageName}</h2>
@@ -42,6 +62,7 @@ export default function MastheadSlider() {
           <button type="button" className="py-2 px-4 bg-blue-400 border-teal-400">Button 1</button>
           <button type="button" className="py-2 px-4 bg-blue-400 border-teal-400">Button 2</button>
         </div>
+        { displaySlide.imageAlt }
       </div>
       <div className="right-col">
         { displaySliderData }
