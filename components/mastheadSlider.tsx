@@ -49,18 +49,18 @@ export default function MastheadSlider() {
     }  
   }, [sliderData, index])
 
-  const displaySliderData = sliderData.map(data => {
-    return (
-      <h2 key={data.id}>{data.imageName}</h2>
-    )
-  })
+  // const displaySliderData = sliderData.map(data => {
+  //   return (
+  //     <h2 key={data.id}>{data.imageName}</h2>
+  //   )
+  // })
 
   return (
     <div className="mastheadSlider flex gap-16 w-full max-w-screen-lg">
       <div className="left-col flex flex-col gap-4 w-8/12">
         <h1 className="font-bold text-6xl">This is the fixed header</h1>
         <h2 className="font-semibold text-3xl">This is where the dynamic content will populate</h2>
-        <h2 className="font-semibold text-3xl">{ displaySlide.imageAlt }</h2>
+        <h2 className="font-semibold text-3xl">{displaySlide.imageAlt}</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi esse harum laudantium alias quos amet quae nesciunt, illo, aspernatur doloribus ratione! Quos ab cum et magnam sed facilis soluta distinctio?</p>
         <div className="flex justify-between w-1/3">
           <button type="button" className="py-2 px-4 bg-blue-400 border-teal-400">Button 1</button>
@@ -69,16 +69,16 @@ export default function MastheadSlider() {
       </div>
       <div className="right-col">
         <h2>DisplaySlide object output here</h2>
-        { displaySlide.imageName }
+        {displaySlide.imageName}
         <div>
           <Image 
-            src={ displaySlide.imageURL }
-            alt={ displaySlide.imageAlt }
+            src={displaySlide.imageURL}
+            alt={displaySlide.imageAlt}
             width={500}
             height={500}
             priority
           />
-        { displaySlide.id }
+        {displaySlide.id}
         </div>
       </div>
     </div>
