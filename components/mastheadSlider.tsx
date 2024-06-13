@@ -41,11 +41,12 @@ export default function MastheadSlider() {
   // be more performant
 
   useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(() => {
-      setIndex(prevIndex => prevIndex === sliderData.length -1 ? 0 : prevIndex + 1),
-      2000
-    });
+    // resetTimeout();
+    function updateIndex() {
+      setIndex(prevIndex => (prevIndex + 1) % sliderData.length);
+    }
+
+    timeoutRef.current = setInterval(updateIndex, 2500);
     return () => {
       resetTimeout();
     }  
