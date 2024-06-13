@@ -1,26 +1,27 @@
 'use client';
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function MastheadSlider() {
   const [sliderData, setSliderData] = useState([
     {
       imageName: 'placeholder 123',
       imageAlt: 'placeholder 1',
-      imageURL: 'placeholder 1',
+      imageURL: '/masthead-test-1.webp',
       slideHeading: 'Lorim Impsum placeholder 1',
       id: 0
     },
     {
       imageName: 'placeholder 2',
       imageAlt: 'placeholder 2',
-      imageURL: 'placeholder 2',
+      imageURL: '/masthead-test-2.jpg',
       slideHeading: 'Lorim Impsum placeholder 2',
       id: 1
     },
     {
       imageName: 'placeholder 3444',
       imageAlt: 'placeholder 3',
-      imageURL: 'placeholder 3',
+      imageURL: '/masthead-test-3.webp',
       slideHeading: 'Lorim Impsum placeholder 3',
       id: 2
     },
@@ -70,6 +71,13 @@ export default function MastheadSlider() {
         <h2>DisplaySlide object output here</h2>
         { displaySlide.imageName }
         <div>
+          <Image 
+            src={ displaySlide.imageURL }
+            alt={ displaySlide.imageAlt }
+            width={500}
+            height={500}
+            priority
+          />
         { displaySlide.id }
         </div>
       </div>
