@@ -26,8 +26,8 @@ export default function MastheadSlider() {
     },
   ]);
 
+  const [displaySlide, setDisplaySlide] = useState(sliderData[0]);
   const [index, setIndex] = useState<number>(sliderData[0].id);
-
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   function resetTimeout() {
@@ -36,37 +36,17 @@ export default function MastheadSlider() {
     }
   }
 
-  const [displaySlide, setDisplaySlide] = useState(sliderData[0]);
-  // Just a rough test -- will move this to it's own component and re-do to
-  // be more performant
-
   useEffect(() => {
-    // resetTimeout();
     function updateIndex() {
       setIndex(prevIndex => (prevIndex + 1) % sliderData.length);
     }
 
     timeoutRef.current = setInterval(updateIndex, 2500);
+    setDisplaySlide(sliderData[index]);
     return () => {
       resetTimeout();
     }  
-  }, [sliderData.length])
-
-
-    // const slideInterval = setInterval(displayContent, 2500);
-
-    // function displayContent() {
-    //   if (displaySlide === sliderData[0]) {
-    //     setDisplaySlide(sliderData[1]);
-    //   };
-    //   if (displaySlide === sliderData[1]) {
-    //     setDisplaySlide(sliderData[2]);
-    //   };
-    //   if (displaySlide === sliderData[2]) {
-    //     setDisplaySlide(sliderData[0]);
-    //   };
-    // }
-  // })
+  }, [sliderData, index])
 
   const displaySliderData = sliderData.map(data => {
     return (
@@ -84,11 +64,14 @@ export default function MastheadSlider() {
           <button type="button" className="py-2 px-4 bg-blue-400 border-teal-400">Button 1</button>
           <button type="button" className="py-2 px-4 bg-blue-400 border-teal-400">Button 2</button>
         </div>
-        { displaySlide.imageAlt }
       </div>
       <div className="right-col">
         { displaySliderData }
         { index }
+      </div>
+      <div>
+        <h2>DisplaySlide object output here</h2>
+        { displaySlide.imageName }
       </div>
     </div>
   )
