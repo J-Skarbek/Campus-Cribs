@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function MastheadSlider() {
   const [sliderData, setSliderData] = useState([
@@ -8,43 +8,64 @@ export default function MastheadSlider() {
       imageAlt: 'placeholder 1',
       imageURL: 'placeholder 1',
       slideHeading: 'Lorim Impsum placeholder 1',
-      id: 1
+      id: 0
     },
     {
       imageName: 'placeholder 2',
       imageAlt: 'placeholder 2',
       imageURL: 'placeholder 2',
       slideHeading: 'Lorim Impsum placeholder 2',
-      id: 2
+      id: 1
     },
     {
       imageName: 'placeholder 3444',
       imageAlt: 'placeholder 3',
       imageURL: 'placeholder 3',
       slideHeading: 'Lorim Impsum placeholder 3',
-      id: 3
+      id: 2
     },
   ]);
+
+  const [index, setIndex] = useState<number>(sliderData[0].id);
+
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
 
   const [displaySlide, setDisplaySlide] = useState(sliderData[0]);
   // Just a rough test -- will move this to it's own component and re-do to
   // be more performant
 
   useEffect(() => {
-    const slideInterval = setInterval(displayContent, 2500);
+    resetTimeout();
+    timeoutRef.current = setTimeout(() => {
+      setIndex(prevIndex => prevIndex === sliderData.length -1 ? 0 : prevIndex + 1),
+      2000
+    });
+    return () => {
+      resetTimeout();
+    }  
+  }, [sliderData.length])
 
-    function displayContent() {
-      if (displaySlide === sliderData[0]) {
-        setDisplaySlide(sliderData[1]);
-      };
-      if (displaySlide === sliderData[1]) {
-        setDisplaySlide(sliderData[2]);
-      };
-      if (displaySlide === sliderData[2]) {
-        setDisplaySlide(sliderData[0]);
-      };
-    }
-  })
+
+    // const slideInterval = setInterval(displayContent, 2500);
+
+    // function displayContent() {
+    //   if (displaySlide === sliderData[0]) {
+    //     setDisplaySlide(sliderData[1]);
+    //   };
+    //   if (displaySlide === sliderData[1]) {
+    //     setDisplaySlide(sliderData[2]);
+    //   };
+    //   if (displaySlide === sliderData[2]) {
+    //     setDisplaySlide(sliderData[0]);
+    //   };
+    // }
+  // })
 
   const displaySliderData = sliderData.map(data => {
     return (
@@ -66,6 +87,7 @@ export default function MastheadSlider() {
       </div>
       <div className="right-col">
         { displaySliderData }
+        { index }
       </div>
     </div>
   )
