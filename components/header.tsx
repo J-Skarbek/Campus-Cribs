@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Header() {
 
   return (
@@ -9,10 +11,10 @@ export default function Header() {
         <div className="nav-menu-container flex items-center">
           <nav>
             <ul className="flex gap-4">
-              <li>Home</li>
-              <li>About</li>
-              <li>Listings</li>
-              <li>Whatever</li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/about">about</Link></li>
+              <li><Link href="/listings">Listings</Link></li>
+              <li><Link href="/login">Login</Link></li>
             </ul>
           </nav>
         </div>
