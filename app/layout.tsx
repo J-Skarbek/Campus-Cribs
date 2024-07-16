@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import Transition from "./transition";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +23,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          <Transition>
-            {children}
-          </Transition>
+          {children}
         </main>
         <Footer />
       </body>

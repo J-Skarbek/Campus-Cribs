@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 
-export default function Transition({
+//NOTE: Reference this video for explanation on how this works: https://www.youtube.com/watch?v=jVU3JD6qOBo
+
+export default function Template({
   children
 } : { 
   children: React.ReactNode
