@@ -1,7 +1,23 @@
 export default function InsertPropertyForm() {
 
+  async function createNewUser(formData) {
+    'use server';
+
+    const userName = formData.get('username');
+    const firstName = formData.get('first-name');
+    const lastName = formData.get('last-name');
+    const email = formData.get('email');
+    const country = formData.get('country');
+    const streetAddress = formData.get('street-address');
+    const city = formData.get('city');
+    const region = formData.get('region');
+    const zipCode = formData.get('postal-code');
+
+    console.log(firstName, lastName, userName);
+  }
+
   return (
-    <form>
+    <form action={createNewUser}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
@@ -29,7 +45,7 @@ export default function InsertPropertyForm() {
               </div>
             </div>
 
-            <div className="col-span-full">
+            {/* <div className="col-span-full">
               <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
                 About
               </label>
@@ -43,22 +59,22 @@ export default function InsertPropertyForm() {
                 />
               </div>
               <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
-            </div>
+            </div> */}
 
-            <div className="col-span-full">
+            {/* <div className="col-span-full">
               <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
                 Photo
               </label>
-              <div className="mt-2 flex items-center gap-x-3">
+              <div className="mt-2 flex items-center gap-x-3"> */}
                 {/* <UserCircleIcon aria-hidden="true" className="h-12 w-12 text-gray-300" /> */}
-                <button
+                {/* <button
                   type="button"
                   className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 >
                   Change
                 </button>
               </div>
-            </div>
+            </div> */}
 
             <div className="col-span-full">
               <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
@@ -215,7 +231,7 @@ export default function InsertPropertyForm() {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
+          {/* <h2 className="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             We&apos;ll always let you know about important changes, but you pick what else you want to hear about.
           </p>
@@ -313,8 +329,8 @@ export default function InsertPropertyForm() {
                 </div>
               </div>
             </fieldset>
-          </div>
-        </div>
+          </div> */}
+        </div> 
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
@@ -325,7 +341,7 @@ export default function InsertPropertyForm() {
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          Save
+          Submit
         </button>
       </div>
     </form>
