@@ -23,6 +23,7 @@ export default function Header() {
               <li><Link href="/about">About</Link></li>
               <li><Link href="/listings">Listings</Link></li>
               <li><Link href="/login">Login</Link></li>
+              <li><Link href="/testForm">Form</Link></li>
             </ul>
           </nav>
         </div>
