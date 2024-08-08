@@ -1,3 +1,5 @@
+import prisma from "@/lib/db";
+
 export default function InsertPropertyForm() {
 
   async function createNewUser(formData) {
@@ -14,6 +16,13 @@ export default function InsertPropertyForm() {
     const zipCode = formData.get('postal-code');
 
     console.log(firstName, lastName, userName);
+
+    await prisma.user.create({
+      data: {
+        name: userName,
+        email: email,
+      }
+    })
   }
 
   return (
