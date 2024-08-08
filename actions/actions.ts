@@ -1,7 +1,7 @@
+'use server';
 import prisma from "@/lib/db";
 
-export default async function createNewUser(formData: FormData) {
-  'use server';
+export async function createNewUser(formData: FormData) {
 
   const userName = formData.get('username');
   const firstName = formData.get('first-name');

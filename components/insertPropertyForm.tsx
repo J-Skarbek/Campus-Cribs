@@ -1,5 +1,5 @@
 // import prisma from "@/lib/db";
-import createNewUser from "@/actions/actions";
+import { createNewUser } from "@/actions/actions";
 
 export default function InsertPropertyForm() {
 
