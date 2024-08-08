@@ -1,29 +1,7 @@
-import prisma from "@/lib/db";
+// import prisma from "@/lib/db";
+import createNewUser from "@/actions/actions";
 
 export default function InsertPropertyForm() {
-
-  async function createNewUser(formData) {
-    'use server';
-
-    const userName = formData.get('username');
-    const firstName = formData.get('first-name');
-    const lastName = formData.get('last-name');
-    const email = formData.get('email');
-    const country = formData.get('country');
-    const streetAddress = formData.get('street-address');
-    const city = formData.get('city');
-    const region = formData.get('region');
-    const zipCode = formData.get('postal-code');
-
-    console.log(firstName, lastName, userName);
-
-    await prisma.user.create({
-      data: {
-        name: userName,
-        email: email,
-      }
-    })
-  }
 
   return (
     <form action={createNewUser}>
